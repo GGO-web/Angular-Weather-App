@@ -1,0 +1,18 @@
+.mat-form-field-wrapper {
+   padding-bottom: 0;
+}
+
+.search-form {
+   display: flex;
+   align-items: center;
+   gap: 30px;
+
+   &__field {
+      width: 300px;
+   }
+
+   &__button {
+      width: 32px;
+      height: 32px;
+   }
+}

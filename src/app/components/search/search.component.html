@@ -1,0 +1,24 @@
+<form (ngSubmit)="searchSubmitHandler($event)" class="search-form">
+   <mat-form-field
+      class="search-form__field"
+      appearance="fill"
+      [floatLabel]="getFloatLabelValue()"
+   >
+      <mat-label class="search-form__label">Enter your city</mat-label>
+      <input
+         matInput
+         placeholder="Location search"
+         [formControl]="search"
+         class="search-form__input"
+         required
+      />
+   </mat-form-field>
+
+   <button
+      mat-fab
+      [color]="search.invalid ? 'warn': 'accent'"
+      aria-label="Example icon button with a bookmark icon"
+   >
+      <mat-icon>search</mat-icon>
+   </button>
+</form>

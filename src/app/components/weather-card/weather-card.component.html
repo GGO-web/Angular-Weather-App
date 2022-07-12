@@ -1,1 +1,95 @@
-<p>weather-card works!</p>
+<app-search (searchQuery)="makeSearchRequest($event)"></app-search>
+
+<article *ngIf="!!response" class="weather-card">
+   <header class="weather-card__header">
+      <img
+         class="weather-card__header-icon"
+         src="http://openweathermap.org/img/wn/{{response.weather[0].icon}}@2x.png"
+         [alt]="response.weather[0].main"
+      />
+
+      <h2 class="weather-card__title">
+         {{response.name}}
+      </h2>
+
+      <span class="weather-card__header-status">
+         {{response.weather[0].main}}
+      </span>
+   </header>
+
+   <div class="weather-card__body">
+      <p class="weather-card__temperature">
+         {{response.main.temp | number: '1.0-0'}}
+      </p>
+
+      <div class="weather-card__body-right">
+         <span class="weather-card__temperature-units">
+            °C
+         </span>
+         <p class="weather-card__feelslike">
+            Feels like {{response.main.feelslike | number: '1.0-0'}}°
+         </p>
+      </div>
+   </div>
+
+   <footer class="weather-card__footer">
+      <div class="weather-card__details">
+         <div class="weather-card__details-item">
+            <img
+               class="weather-card__details-icon"
+               src="../../../assets/temperature.svg"
+               alt=""
+            />
+            <p class="weather-card__details-text">High/Low</p>
+            <p class="weather-card__details-value">
+               {{response.main.tempmax | number:
+               '1.0-0'}}/{{response.main.tempmin | number: '1.0-0'}}
+            </p>
+         </div>
+         <div class="weather-card__details-item">
+            <img
+               class="weather-card__details-icon"
+               src="../../../assets/wind.svg"
+               alt=""
+            />
+            <p class="weather-card__details-text">Wind</p>
+            <p class="weather-card__details-value">
+               {{response.wind.speed}} km/h
+            </p>
+         </div>
+         <div class="weather-card__details-item">
+            <img
+               class="weather-card__details-icon"
+               src="../../../assets/humidity.svg"
+               alt=""
+            />
+            <p class="weather-card__details-text">Humidity</p>
+            <p class="weather-card__details-value">
+               {{response.main.humidity}} %
+            </p>
+         </div>
+         <div class="weather-card__details-item">
+            <img
+               class="weather-card__details-icon"
+               src="../../../assets/visibility.svg"
+               alt=""
+            />
+            <p class="weather-card__details-text">Visibility</p>
+            <p class="weather-card__details-value">
+               {{response.visibility / 1000 | number: '1.0-2'}} km
+            </p>
+         </div>
+         <div class="weather-card__details-item">
+            <img
+               class="weather-card__details-icon"
+               src="../../../assets/pressure.svg"
+               alt=""
+            />
+            <p class="weather-card__details-text">Pressure</p>
+            <p class="weather-card__details-value">
+               {{response.main.pressure / 1000 | number: '1.0-2'}} kPa
+            </p>
+         </div>
+      </div>
+   </footer>
+</article>

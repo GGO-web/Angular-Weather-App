@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FloatLabelType } from '@angular/material/form-field';
 
@@ -8,6 +8,8 @@ import { FloatLabelType } from '@angular/material/form-field';
    styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+   @Output() searchQuery = new EventEmitter<string>();
+
    public search = new FormControl('', [Validators.required]);
    public floatLabelControl = new FormControl('auto' as FloatLabelType);
 
@@ -18,6 +20,6 @@ export class SearchComponent {
    searchSubmitHandler(event: SubmitEvent) {
       event.preventDefault();
 
-      console.log(this.search.value);
+      this.searchQuery.emit(this.search.value as string);
    }
 }

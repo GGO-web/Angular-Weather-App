@@ -82,7 +82,7 @@
                °C
             </span>
             <p class="weather-card__feelslike">
-               Feels like {{weatherData.main.feelslike | number: '1.0-0'}}°
+               Feels like {{weatherData.main.feels_like}}°
             </p>
          </div>
       </div>
@@ -124,8 +124,8 @@
             />
             <p class="weather-card__details-text">High/Low</p>
             <p class="weather-card__details-value">
-               {{weatherData.main.tempmax | number: '1.0-0'}}° /
-               {{weatherData.main.tempmin | number: '1.0-0'}}°
+               {{weatherData.main.temp_max | number: '1.0-0'}}° /
+               {{weatherData.main.temp_min | number: '1.0-0'}}°
             </p>
          </div>
          <div class="weather-card__details-item">

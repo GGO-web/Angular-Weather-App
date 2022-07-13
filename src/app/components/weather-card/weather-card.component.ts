@@ -18,11 +18,10 @@ export class WeatherCardComponent {
 
       this.weatherService.getTodayWeather(searchQuery).subscribe({
          next: (data: IWeather) => {
-            setTimeout(() => {
-               this.weatherData = data;
-               this.weatherService.weatherStatus.loading = false;
-               this.weatherService.weatherStatus.completed = true;
-            }, 2000);
+            this.weatherData = data;
+
+            this.weatherService.weatherStatus.loading = false;
+            this.weatherService.weatherStatus.completed = true;
          },
          error: (error: Error) => {
             this.weatherService.weatherStatus.loading = false;

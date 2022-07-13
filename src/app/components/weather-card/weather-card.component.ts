@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 import { IWeather } from 'src/app/models/weather.model';
 import { WeatherService } from 'src/app/services/weather.service';
 
@@ -9,15 +8,26 @@ import { WeatherService } from 'src/app/services/weather.service';
    styleUrls: ['./weather-card.component.scss']
 })
 export class WeatherCardComponent {
-   public response!: IWeather;
+   public weatherData!: IWeather;
 
-   constructor(private weatherService: WeatherService) {}
+   constructor(public weatherService: WeatherService) {}
 
    makeSearchRequest(searchQuery: string) {
-      console.log(searchQuery);
+      this.weatherService.weatherStatus.completed = false;
+      this.weatherService.weatherStatus.loading = true;
 
-      this.weatherService.getTodayWeather(searchQuery).subscribe(data => {
-         this.response = data;
+      this.weatherService.getTodayWeather(searchQuery).subscribe({
+         next: (data: IWeather) => {
+            setTimeout(() => {
+               this.weatherData = data;
+               this.weatherService.weatherStatus.loading = false;
+               this.weatherService.weatherStatus.completed = true;
+            }, 2000);
+         },
+         error: (error: Error) => {
+            this.weatherService.weatherStatus.loading = false;
+            this.weatherService.weatherStatus.error = error.message;
+         }
       });
    }
 }

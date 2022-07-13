@@ -12,6 +12,9 @@
          class="search-form__input"
          required
       />
+      <mat-error *ngIf="weatherService.weatherStatus.error"
+         >Something went wrong, please try again</mat-error
+      >
    </mat-form-field>
 
    <button

@@ -9,7 +9,7 @@
 .main-title::before {
    content: "";
    position: absolute;
-   left: 15%;
+   left: 50%;
    top: 50%;
    z-index: -1;
    width: 150px;
@@ -17,5 +17,5 @@
    background-image: url("../assets/ellipse.svg");
    background-size: contain;
    background-repeat: no-repeat;
-   transform: translateY(-50%);
+   transform: translate(-50%, -50%);
 }

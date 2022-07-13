@@ -52,3 +52,9 @@ export interface Sys {
    sunrise: number;
    sunset: number;
 }
+
+export interface IWeatherStatus {
+   loading: boolean;
+   error: string;
+   completed: boolean;
+}

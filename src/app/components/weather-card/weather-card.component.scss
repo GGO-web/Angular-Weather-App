@@ -1,0 +1,111 @@
+.weather-card {
+   position: relative;
+   z-index: 2;
+   display: grid;
+   margin: 30px 0;
+   border-radius: 10px;
+   padding: 30px;
+   background-image:
+      linear-gradient(-60deg, rgba(#023047, 0.3), rgba(#fff, 0.3)),
+      url("../../../assets/conditions/01d.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   gap: 40px;
+
+   &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      background-color: rgb(var(--color-white) 0.6);
+   }
+
+   &__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &-icon {
+         width: 60px;
+         height: 60px;
+      }
+   }
+
+   &__title {
+      font-size: 64px;
+   }
+
+   &__body {
+      &-item {
+         display: flex;
+         justify-content: center;
+      }
+   }
+
+   &__duration {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+
+      &-item {
+         display: grid;
+         align-items: center;
+         gap: 10px;
+      }
+
+      &-img {
+         grid-row: 1 / 3;
+      }
+
+      &-caption {
+         display: block;
+         font-size: 14px;
+         text-transform: uppercase;
+      }
+
+      &-time {
+         grid-column: 2 / 3;
+         font-size: 24px;
+      }
+   }
+
+   &__temperature {
+      margin-right: 10px;
+      font-size: 100px;
+
+      &-units {
+         font-size: 48px;
+      }
+   }
+
+   &__details {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+
+      &-item {
+         text-align: center;
+      }
+
+      &-icon {
+         margin-bottom: 10px;
+      }
+
+      &-text {
+         margin-bottom: 5px;
+      }
+   }
+
+   &__feelslike {
+      margin-top: 17%;
+   }
+}
+
+.skeleton {
+   display: grid;
+   margin: 30px 0;
+   gap: 40px;
+}

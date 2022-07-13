@@ -1,34 +1,116 @@
 <app-search (searchQuery)="makeSearchRequest($event)"></app-search>
 
-<article *ngIf="!!response" class="weather-card">
+<div *ngIf="weatherService.weatherStatus.loading" class="skeleton">
+   <div class="skeleton__item" [style]="{'textAlign': 'center'}">
+      <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+         count="1"
+         appearance="line"
+         [theme]="{'display': 'block','margin': '10px auto', 'width': '200px'}"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+         count="1"
+         appearance="line"
+         [theme]="{'display': 'block','margin': '10px auto', 'width': '100px'}"
+      ></ngx-skeleton-loader>
+   </div>
+
+   <div class="skeleton__item">
+      <ngx-skeleton-loader
+         count="2"
+         appearance="line"
+         [theme]="{'display': 'block','margin': '10px auto', 'width': '150px'}"
+      ></ngx-skeleton-loader>
+   </div>
+
+   <div class="skeleton__item" [style]="{'textAlign': 'center'}">
+      <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+         count="1"
+         appearance="line"
+         [theme]="{'display': 'inline-block', 'width': '50px'}"
+      ></ngx-skeleton-loader>
+
+      <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+         count="1"
+         appearance="line"
+         [theme]="{'display': 'inline-block', 'width': '50px'}"
+      ></ngx-skeleton-loader>
+   </div>
+
+   <div class="skeleton__item" [style]="{'textAlign': 'center'}">
+      <ngx-skeleton-loader
+         count="5"
+         appearance="circle"
+         [style]="{'display': 'grid', 'gridTemplateColumns': 'repeat(4, 1fr)', 'textAlign': 'center', 'gap': '30px'}"
+         [theme]="{'margin': '0 auto'}"
+      ></ngx-skeleton-loader>
+   </div>
+</div>
+
+<article
+   *ngIf="weatherService.weatherStatus.completed"
+   class="weather-card"
+   [style]="{
+   'backgroundImage': 'linear-gradient(-60deg, rgba(0,0,0,0.3), rgba(255,255,255,0.3)), url(/assets/conditions/' + weatherData.weather[0].icon + '.jpg)'}"
+>
    <header class="weather-card__header">
       <img
          class="weather-card__header-icon"
-         src="http://openweathermap.org/img/wn/{{response.weather[0].icon}}@2x.png"
-         [alt]="response.weather[0].main"
+         src="http://openweathermap.org/img/wn/{{weatherData.weather[0].icon}}@2x.png"
+         [alt]="weatherData.weather[0].main"
       />
 
-      <h2 class="weather-card__title">
-         {{response.name}}
+      <h2 class="weather-card__title m-0">
+         {{weatherData.name}}
       </h2>
 
       <span class="weather-card__header-status">
-         {{response.weather[0].main}}
+         {{weatherData.weather[0].main}}
       </span>
    </header>
 
    <div class="weather-card__body">
-      <p class="weather-card__temperature">
-         {{response.main.temp | number: '1.0-0'}}
-      </p>
-
-      <div class="weather-card__body-right">
-         <span class="weather-card__temperature-units">
-            °C
-         </span>
-         <p class="weather-card__feelslike">
-            Feels like {{response.main.feelslike | number: '1.0-0'}}°
+      <div class="weather-card__body-item">
+         <p class="weather-card__temperature">
+            {{weatherData.main.temp | number: '1.0-0'}}
          </p>
+
+         <div class="weather-card__temperature-right">
+            <span class="weather-card__temperature-units">
+               °C
+            </span>
+            <p class="weather-card__feelslike">
+               Feels like {{weatherData.main.feelslike | number: '1.0-0'}}°
+            </p>
+         </div>
+      </div>
+
+      <div class="weather-card__duration">
+         <div class="weather-card__duration-item">
+            <img
+               class="weather-card__duration-img"
+               src="../../../assets/sunrise.svg"
+               alt=""
+            />
+            <span class="weather-card__duration-caption">sunrise</span>
+            <time class="weather-card__duration-time">
+               {{weatherData.sys.sunrise * 1000 | date: "hh:mm"}}
+            </time>
+         </div>
+
+         <div class="weather-card__duration-item">
+            <img
+               class="weather-card__duration-img"
+               src="../../../assets/sunset.svg"
+               alt=""
+            />
+            <span class="weather-card__duration-caption">sunset</span>
+            <time class="weather-card__duration-time">
+               {{weatherData.sys.sunset * 1000 | date: "HH:mm"}}
+            </time>
+         </div>
       </div>
    </div>
 
@@ -42,8 +124,8 @@
             />
             <p class="weather-card__details-text">High/Low</p>
             <p class="weather-card__details-value">
-               {{response.main.tempmax | number:
-               '1.0-0'}}/{{response.main.tempmin | number: '1.0-0'}}
+               {{weatherData.main.tempmax | number: '1.0-0'}}° /
+               {{weatherData.main.tempmin | number: '1.0-0'}}°
             </p>
          </div>
          <div class="weather-card__details-item">
@@ -54,7 +136,7 @@
             />
             <p class="weather-card__details-text">Wind</p>
             <p class="weather-card__details-value">
-               {{response.wind.speed}} km/h
+               {{weatherData.wind.speed}} km/h
             </p>
          </div>
          <div class="weather-card__details-item">
@@ -65,7 +147,7 @@
             />
             <p class="weather-card__details-text">Humidity</p>
             <p class="weather-card__details-value">
-               {{response.main.humidity}} %
+               {{weatherData.main.humidity}} %
             </p>
          </div>
          <div class="weather-card__details-item">
@@ -76,7 +158,7 @@
             />
             <p class="weather-card__details-text">Visibility</p>
             <p class="weather-card__details-value">
-               {{response.visibility / 1000 | number: '1.0-2'}} km
+               {{weatherData.visibility / 1000 | number: '1.0-2'}} km
             </p>
          </div>
          <div class="weather-card__details-item">
@@ -87,7 +169,7 @@
             />
             <p class="weather-card__details-text">Pressure</p>
             <p class="weather-card__details-value">
-               {{response.main.pressure / 1000 | number: '1.0-2'}} kPa
+               {{weatherData.main.pressure / 1000 | number: '1.0-2'}} kPa
             </p>
          </div>
       </div>

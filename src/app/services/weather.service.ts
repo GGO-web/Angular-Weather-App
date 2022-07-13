@@ -2,12 +2,18 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IWeather } from '../models/weather.model';
+import { IWeather, IWeatherStatus } from '../models/weather.model';
 
 @Injectable({
    providedIn: 'root'
 })
 export class WeatherService {
+   public weatherStatus: IWeatherStatus = {
+      loading: false,
+      error: '',
+      completed: false
+   };
+
    constructor(private http: HttpClient) {}
 
    getTodayWeather(location: string): Observable<IWeather> {

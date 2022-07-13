@@ -33,7 +33,7 @@ export interface Main {
    temp_max: number;
    pressure: number;
    humidity: number;
-   sealevel: number;
+   sea_level: number;
    grnd_level: number;
 }
 

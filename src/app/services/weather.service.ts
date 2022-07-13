@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { mockedWeatherData } from 'src/constants';
 import { environment } from 'src/environments/environment';
 import { IWeather, IWeatherStatus } from '../models/weather.model';
 
@@ -17,6 +18,7 @@ export class WeatherService {
    constructor(private http: HttpClient) {}
 
    getTodayWeather(location: string): Observable<IWeather> {
+      // return of(mockedWeatherData);
       return this.http.get<IWeather>(environment.weatherApiUrl, {
          headers: new HttpHeaders()
             .set(environment.XRapidAPIKey.name, environment.XRapidAPIKey.value)

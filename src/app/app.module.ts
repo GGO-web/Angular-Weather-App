@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
 import { WeatherCardComponent } from './components/weather-card/weather-card.component';
@@ -18,7 +17,6 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
    declarations: [AppComponent, SearchComponent, WeatherCardComponent],
    imports: [
       BrowserModule,
-      AppRoutingModule,
       FormsModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,

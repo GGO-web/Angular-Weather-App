@@ -1,4 +1,4 @@
-<form (ngSubmit)="searchSubmitHandler($event)" class="search-form">
+<form class="search-form">
    <mat-form-field
       class="search-form__field"
       appearance="fill"
@@ -8,10 +8,21 @@
       <input
          matInput
          placeholder="Location search"
-         [formControl]="search"
+         (formControl)="search"
          class="search-form__input"
          required
       />
+      <button
+         mat-button
+         *ngIf="search"
+         matSuffix
+         mat-icon-button
+         aria-label="Clear"
+         type="button"
+         (click)="search.reset()"
+      >
+         <mat-icon>close</mat-icon>
+      </button>
       <mat-error *ngIf="weatherService.weatherStatus.error"
          >Something went wrong, please try again</mat-error
       >
@@ -21,6 +32,8 @@
       mat-fab
       [color]="search.invalid ? 'warn': 'accent'"
       aria-label="Example icon button with a bookmark icon"
+      (submit)="searchSubmitHandler($event)"
+      class="search-form__button"
    >
       <mat-icon>search</mat-icon>
    </button>

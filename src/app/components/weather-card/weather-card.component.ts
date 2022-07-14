@@ -19,6 +19,13 @@ export class WeatherCardComponent {
       this.weatherService.weatherStatus.completed = false;
       this.weatherService.weatherStatus.loading = true;
 
+      // this.weatherService.getCityLocation(searchQuery);
+      // this.weatherService
+      //    .getForecastWeather(searchQuery)
+      //    .subscribe(response => {
+      //       console.log(response);
+      //    });
+
       this.weatherService.getTodayWeather(searchQuery).subscribe({
          next: (data: IWeather) => {
             this.weatherData = data;

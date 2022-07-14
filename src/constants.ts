@@ -1,3 +1,4 @@
+import { ILocation } from './app/models/location.model';
 import { IWeather } from './app/models/weather.model';
 
 export const mockedWeatherData: IWeather = {
@@ -30,4 +31,20 @@ export const mockedWeatherData: IWeather = {
    id: 702550,
    name: 'Lviv',
    cod: 200
+};
+
+export const mockedLocation: ILocation = {
+   importance: 0.78325419687689,
+   licence:
+      'Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright',
+   class: 'place',
+   osm_id: 26150791,
+   display_name:
+      'Lviv, Lviv Urban Hromada, Lviv Raion, Lviv Oblast, 79000, Ukraine',
+   osm_type: 'node',
+   lon: '24.0315921',
+   place_id: 127053,
+   boundingbox: ['49.681952', '50.001952', '23.8715921', '24.1915921'],
+   lat: '49.841952',
+   type: 'city'
 };

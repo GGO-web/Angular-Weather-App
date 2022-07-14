@@ -13,6 +13,12 @@ export const environment = {
    XRapidAPIHost: {
       name: 'X-RapidAPI-Host',
       value: 'community-open-weather-map.p.rapidapi.com'
+   },
+   GeolocationApiUrl:
+      'https://forward-reverse-geocoding.p.rapidapi.com/v1/forward',
+   GeolocationApiHost: {
+      name: 'X-RapidAPI-Host',
+      value: 'forward-reverse-geocoding.p.rapidapi.com'
    }
 };
 

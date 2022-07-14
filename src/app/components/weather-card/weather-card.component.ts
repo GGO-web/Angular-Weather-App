@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IWeather } from 'src/app/models/weather.model';
 import { WeatherService } from 'src/app/services/weather.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
    selector: 'app-weather-card',
@@ -9,6 +10,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 })
 export class WeatherCardComponent {
    public weatherData!: IWeather;
+   public env = environment;
 
    constructor(public weatherService: WeatherService) {}
 

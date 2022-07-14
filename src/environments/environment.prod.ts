@@ -1,5 +1,6 @@
 export const environment = {
    production: true,
+   base: './',
    weatherApiUrl: 'https://community-open-weather-map.p.rapidapi.com/weather',
    XRapidAPIKey: {
       name: 'X-RapidAPI-Key',

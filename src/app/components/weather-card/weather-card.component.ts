@@ -13,6 +13,7 @@ export class WeatherCardComponent {
    constructor(public weatherService: WeatherService) {}
 
    makeSearchRequest(searchQuery: string) {
+      this.weatherService.weatherStatus.error = '';
       this.weatherService.weatherStatus.completed = false;
       this.weatherService.weatherStatus.loading = true;
 

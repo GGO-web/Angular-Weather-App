@@ -1,4 +1,4 @@
-<form class="search-form">
+<form (ngSubmit)="searchSubmitHandler($event)" class="search-form">
    <mat-form-field
       class="search-form__field"
       appearance="fill"
@@ -8,13 +8,12 @@
       <input
          matInput
          placeholder="Location search"
-         (formControl)="search"
+         [formControl]="search"
          class="search-form__input"
          required
       />
       <button
          mat-button
-         *ngIf="search"
          matSuffix
          mat-icon-button
          aria-label="Clear"

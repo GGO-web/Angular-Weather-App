@@ -32,4 +32,10 @@ describe('SearchComponent', () => {
 
       expect(component.searchQuery.emit).toHaveBeenCalledWith('City Name');
    });
+
+   it('should set floating value to auto mode if value is not provided', () => {
+      component.floatLabelControl.setValue(null);
+
+      expect(component.getFloatLabelValue()).toBe('auto');
+   });
 });

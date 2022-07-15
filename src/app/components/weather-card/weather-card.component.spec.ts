@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
-import { mockedWeatherData } from 'src/constants';
+import { mockedForecast, mockedWeatherData } from 'src/constants';
 
 import { WeatherCardComponent } from './weather-card.component';
 
@@ -18,6 +18,10 @@ describe('WeatherCardComponent', () => {
       fixture = TestBed.createComponent(WeatherCardComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
+
+      spyOn(component.weatherService, 'getForecastWeather').and.returnValue(
+         of(mockedForecast)
+      );
    });
 
    it('should display Weather response to the template', () => {

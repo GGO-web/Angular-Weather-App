@@ -1,14 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {
-   mockedForecast,
-   mockedLocation,
-   mockedWeatherData
-} from 'src/constants';
-import { environment } from 'src/environments/environment';
 import { IForecast } from '../models/forecast.model';
-import { ILocation } from '../models/location.model';
 import { IWeather, IWeatherStatus } from '../models/weather.model';
 
 @Injectable({
@@ -21,41 +14,24 @@ export class WeatherService {
       completed: false
    };
 
-   constructor(private http: HttpClient) {}
+   constructor(public http: HttpClient) {}
 
    getTodayWeather(location: string): Observable<IWeather> {
-      return this.http.get<IWeather>(environment.weatherApiUrl, {
-         headers: new HttpHeaders().set(
-            environment.XRapidAPIHost.name,
-            environment.XRapidAPIHost.value
-         ),
+      const [url, host] = [
+         'https://community-open-weather-map.p.rapidapi.com/weather',
+         {
+            name: 'X-RapidAPI-Host',
+            value: 'community-open-weather-map.p.rapidapi.com'
+         }
+      ];
+
+      return this.http.get<IWeather>(url, {
+         headers: new HttpHeaders().set(host.name, host.value),
          params: new HttpParams()
             .set('q', location)
             .set('units', 'metric')
             .set('mode', 'json')
       });
-   }
-
-   getCityLocation(location: string): Observable<ILocation[]> {
-      return of([mockedLocation]);
-
-      // const locationObservable: Observable<ILocation[]> = this.http.get<
-      //    ILocation[]
-      // >(environment.GeolocationApiUrl, {
-      //    headers: new HttpHeaders()
-      //       .set(
-      //          environment.GeolocationApiHost.name,
-      //          environment.GeolocationApiHost.value
-      //       ),
-      //    params: new HttpParams()
-      //       .set('city', location)
-      //       .set('format', 'json')
-      //       .set('key', environment.XRapidAPIKey.value)
-      // });
-
-      // locationObservable.subscribe(response => console.log(response));
-
-      // return locationObservable;
    }
 
    getForecastWeather(location: string): Observable<IForecast> {

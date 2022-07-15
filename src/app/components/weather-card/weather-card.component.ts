@@ -14,9 +14,7 @@ export class WeatherCardComponent {
    public forecast!: IForecast;
    public env = environment;
 
-   constructor(public weatherService: WeatherService) {
-      this.makeSearchRequest('Lviv');
-   }
+   constructor(public weatherService: WeatherService) {}
 
    makeSearchRequest(searchQuery: string) {
       this.weatherService.weatherStatus.error = '';
@@ -34,7 +32,6 @@ export class WeatherCardComponent {
                .getForecastWeather(searchQuery)
                .subscribe(forecast => {
                   this.forecast = forecast;
-                  console.log(forecast);
                });
          },
          error: (error: Error) => {

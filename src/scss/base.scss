@@ -1,0 +1,24 @@
+// Min Page width
+$minWidth: 320;
+
+// Min mobile width
+$minMobile: 375;
+
+// Max design layout width
+$maxWidth: 1920;
+
+// Width of container
+$maxWidthContainer: 1290;
+
+// Container padding left + right
+$containerPadding: 30;
+
+// First breakpoint call width
+$containerWidth: $maxWidthContainer + $containerPadding;
+$containerFull: #{$containerWidth} + "px";
+
+// breakpoints
+$pc: em($containerWidth);
+$tablet: em(993);
+$mobile: em(769);
+$mobileSmall: em(480);

@@ -1,3 +1,8 @@
+@use "sass:math";
+
+@import "../../../scss/base";
+@import "../../../scss/mixins";
+
 .weather {
    margin: 30px 0;
 }
@@ -40,7 +45,7 @@
    }
 
    &__title {
-      font-size: 64px;
+      @include adaptiveValue("font-size", 64, 48);
    }
 
    &__body {
@@ -79,17 +84,19 @@
 
    &__temperature {
       margin-right: 10px;
-      font-size: 100px;
+
+      @include adaptiveValue("font-size", 100, 64);
 
       &-units {
-         font-size: 48px;
+         @include adaptiveValue("font-size", 48, 24);
       }
    }
 
    &__details {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+
+      @include adaptiveValue("gap", 30, 20);
 
       &-item {
          text-align: center;
@@ -156,8 +163,9 @@
    &__time-weekday {
       display: block;
       margin-bottom: 5px;
-      font-size: 24px;
       text-transform: uppercase;
+
+      @include adaptiveValue("font-size", 24, 20);
    }
 
    &__time-monthday {
@@ -177,5 +185,12 @@
 
    &__day-temperature {
       font-size: 24px;
+   }
+}
+
+@media (max-width: 480px) {
+   .weather-card,
+   .weather-forecast {
+      padding: 20px;
    }
 }

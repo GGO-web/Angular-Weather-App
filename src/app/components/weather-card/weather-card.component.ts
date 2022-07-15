@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IForecast } from 'src/app/models/forecast.model';
 import { IWeather } from 'src/app/models/weather.model';
 import { WeatherService } from 'src/app/services/weather.service';
 import { environment } from 'src/environments/environment';
@@ -10,21 +11,17 @@ import { environment } from 'src/environments/environment';
 })
 export class WeatherCardComponent {
    public weatherData!: IWeather;
+   public forecast!: IForecast;
    public env = environment;
 
-   constructor(public weatherService: WeatherService) {}
+   constructor(public weatherService: WeatherService) {
+      this.makeSearchRequest('Lviv');
+   }
 
    makeSearchRequest(searchQuery: string) {
       this.weatherService.weatherStatus.error = '';
       this.weatherService.weatherStatus.completed = false;
       this.weatherService.weatherStatus.loading = true;
-
-      // this.weatherService.getCityLocation(searchQuery);
-      // this.weatherService
-      //    .getForecastWeather(searchQuery)
-      //    .subscribe(response => {
-      //       console.log(response);
-      //    });
 
       this.weatherService.getTodayWeather(searchQuery).subscribe({
          next: (data: IWeather) => {
@@ -32,6 +29,13 @@ export class WeatherCardComponent {
 
             this.weatherService.weatherStatus.loading = false;
             this.weatherService.weatherStatus.completed = true;
+
+            this.weatherService
+               .getForecastWeather(searchQuery)
+               .subscribe(forecast => {
+                  this.forecast = forecast;
+                  console.log(forecast);
+               });
          },
          error: (error: Error) => {
             this.weatherService.weatherStatus.loading = false;

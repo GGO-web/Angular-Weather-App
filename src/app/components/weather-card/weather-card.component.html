@@ -49,129 +49,178 @@
    </div>
 </div>
 
-<article
-   *ngIf="weatherService.weatherStatus.completed"
-   class="weather-card"
-   [style]="{
+<article *ngIf="weatherService.weatherStatus.completed" class="weather">
+   <div
+      class="weather-card"
+      [style]="{
    'backgroundImage': 'linear-gradient(-60deg, rgba(0,0,0,0.3), rgba(255,255,255,0.3)), url(' + env.base + 'assets/conditions/' + weatherData.weather[0].icon + '.jpg)'}"
->
-   <header class="weather-card__header">
-      <img
-         class="weather-card__header-icon"
-         src="http://openweathermap.org/img/wn/{{weatherData.weather[0].icon}}@2x.png"
-         [alt]="weatherData.weather[0].main"
-      />
+   >
+      <header class="weather-card__header">
+         <img
+            class="weather-card__header-icon"
+            src="http://openweathermap.org/img/wn/{{weatherData.weather[0].icon}}@2x.png"
+            [alt]="weatherData.weather[0].main"
+         />
 
-      <h2 class="weather-card__title m-0">
-         {{weatherData.name}}
-      </h2>
+         <h2 class="weather-card__title m-0">
+            {{weatherData.name}}
+         </h2>
 
-      <span class="weather-card__header-status">
-         {{weatherData.weather[0].main}}
-      </span>
-   </header>
+         <span class="weather-card__header-status">
+            {{weatherData.weather[0].main}}
+         </span>
+      </header>
 
-   <div class="weather-card__body">
-      <div class="weather-card__body-item">
-         <p class="weather-card__temperature">
-            {{weatherData.main.temp | number: '1.0-0'}}
-         </p>
-
-         <div class="weather-card__temperature-right">
-            <span class="weather-card__temperature-units">
-               °C
-            </span>
-            <p class="weather-card__feelslike">
-               Feels like {{weatherData.main.feels_like}}°
+      <div class="weather-card__body">
+         <div class="weather-card__body-item">
+            <p class="weather-card__temperature">
+               {{weatherData.main.temp | number: '1.0-0'}}
             </p>
+
+            <div class="weather-card__temperature-right">
+               <span class="weather-card__temperature-units">
+                  °C
+               </span>
+               <p class="weather-card__feelslike">
+                  Feels like {{weatherData.main.feels_like}}°
+               </p>
+            </div>
+         </div>
+
+         <div class="weather-card__duration">
+            <div class="weather-card__duration-item">
+               <img
+                  class="weather-card__duration-img"
+                  [src]="env.base + 'assets/sunrise.svg'"
+                  alt=""
+               />
+               <span class="weather-card__duration-caption">sunrise</span>
+               <time class="weather-card__duration-time">
+                  {{weatherData.sys.sunrise * 1000 | date: "hh:mm"}}
+               </time>
+            </div>
+
+            <div class="weather-card__duration-item">
+               <img
+                  class="weather-card__duration-img"
+                  [src]="env.base + 'assets/sunset.svg'"
+                  alt=""
+               />
+               <span class="weather-card__duration-caption">sunset</span>
+               <time class="weather-card__duration-time">
+                  {{weatherData.sys.sunset * 1000 | date: "HH:mm"}}
+               </time>
+            </div>
          </div>
       </div>
 
-      <div class="weather-card__duration">
-         <div class="weather-card__duration-item">
-            <img
-               class="weather-card__duration-img"
-               [src]="env.base + 'assets/sunrise.svg'"
-               alt=""
-            />
-            <span class="weather-card__duration-caption">sunrise</span>
-            <time class="weather-card__duration-time">
-               {{weatherData.sys.sunrise * 1000 | date: "hh:mm"}}
-            </time>
+      <footer class="weather-card__footer">
+         <div class="weather-card__details">
+            <div class="weather-card__details-item">
+               <img
+                  class="weather-card__details-icon"
+                  [src]="env.base + 'assets/temperature.svg'"
+                  alt=""
+               />
+               <p class="weather-card__details-text">High/Low</p>
+               <p class="weather-card__details-value">
+                  {{weatherData.main.temp_max | number: '1.0-0'}}° /
+                  {{weatherData.main.temp_min | number: '1.0-0'}}°
+               </p>
+            </div>
+            <div class="weather-card__details-item">
+               <img
+                  class="weather-card__details-icon"
+                  [src]="env.base + 'assets/wind.svg'"
+                  alt=""
+               />
+               <p class="weather-card__details-text">Wind</p>
+               <p class="weather-card__details-value">
+                  {{weatherData.wind.speed}} m/s
+               </p>
+            </div>
+            <div class="weather-card__details-item">
+               <img
+                  class="weather-card__details-icon"
+                  [src]="env.base + 'assets/humidity.svg'"
+                  alt=""
+               />
+               <p class="weather-card__details-text">Humidity</p>
+               <p class="weather-card__details-value">
+                  {{weatherData.main.humidity}} %
+               </p>
+            </div>
+            <div class="weather-card__details-item">
+               <img
+                  class="weather-card__details-icon"
+                  [src]="env.base + 'assets/visibility.svg'"
+                  alt=""
+               />
+               <p class="weather-card__details-text">Visibility</p>
+               <p class="weather-card__details-value">
+                  {{weatherData.visibility / 1000 | number: '1.0-2'}} km
+               </p>
+            </div>
+            <div class="weather-card__details-item">
+               <img
+                  class="weather-card__details-icon"
+                  [src]="env.base + 'assets/pressure.svg'"
+                  alt=""
+               />
+               <p class="weather-card__details-text">Pressure</p>
+               <p class="weather-card__details-value">
+                  {{weatherData.main.pressure}} hPa
+               </p>
+            </div>
          </div>
-
-         <div class="weather-card__duration-item">
-            <img
-               class="weather-card__duration-img"
-               [src]="env.base + 'assets/sunset.svg'"
-               alt=""
-            />
-            <span class="weather-card__duration-caption">sunset</span>
-            <time class="weather-card__duration-time">
-               {{weatherData.sys.sunset * 1000 | date: "HH:mm"}}
-            </time>
-         </div>
-      </div>
+      </footer>
    </div>
 
-   <footer class="weather-card__footer">
-      <div class="weather-card__details">
-         <div class="weather-card__details-item">
-            <img
-               class="weather-card__details-icon"
-               [src]="env.base + 'assets/temperature.svg'"
-               alt=""
-            />
-            <p class="weather-card__details-text">High/Low</p>
-            <p class="weather-card__details-value">
-               {{weatherData.main.temp_max | number: '1.0-0'}}° /
-               {{weatherData.main.temp_min | number: '1.0-0'}}°
-            </p>
-         </div>
-         <div class="weather-card__details-item">
-            <img
-               class="weather-card__details-icon"
-               [src]="env.base + 'assets/wind.svg'"
-               alt=""
-            />
-            <p class="weather-card__details-text">Wind</p>
-            <p class="weather-card__details-value">
-               {{weatherData.wind.speed}} m/s
-            </p>
-         </div>
-         <div class="weather-card__details-item">
-            <img
-               class="weather-card__details-icon"
-               [src]="env.base + 'assets/humidity.svg'"
-               alt=""
-            />
-            <p class="weather-card__details-text">Humidity</p>
-            <p class="weather-card__details-value">
-               {{weatherData.main.humidity}} %
-            </p>
-         </div>
-         <div class="weather-card__details-item">
-            <img
-               class="weather-card__details-icon"
-               [src]="env.base + 'assets/visibility.svg'"
-               alt=""
-            />
-            <p class="weather-card__details-text">Visibility</p>
-            <p class="weather-card__details-value">
-               {{weatherData.visibility / 1000 | number: '1.0-2'}} km
-            </p>
-         </div>
-         <div class="weather-card__details-item">
-            <img
-               class="weather-card__details-icon"
-               [src]="env.base + 'assets/pressure.svg'"
-               alt=""
-            />
-            <p class="weather-card__details-text">Pressure</p>
-            <p class="weather-card__details-value">
-               {{weatherData.main.pressure}} hPa
-            </p>
-         </div>
-      </div>
-   </footer>
+   <div class="weather__forecast weather-forecast">
+      <h2 class="weather-forecast__title">
+         Forecast
+      </h2>
+
+      <swiper
+         [slidesPerView]="'auto'"
+         [freeMode]="true"
+         [spaceBetween]="30"
+         [autoHeight]="true"
+         class="weather-forecast__days list-reset"
+      >
+         <ng-container *ngFor="let dayForecast of forecast.data">
+            <ng-template swiperSlide>
+               <div class="weather-forecast__day">
+                  <time
+                     class="weather-forecast__time"
+                     [dateTime]="dayForecast.valid_date"
+                  >
+                     <span class="weather-forecast__time-weekday"
+                        >{{dayForecast.valid_date | date: "ccc"}}</span
+                     >
+                     <span class="weather-forecast__time-monthday"
+                        >{{dayForecast.valid_date | date: "dd MMM"}}</span
+                     >
+                  </time>
+
+                  <p class="weather-forecast__day-status">
+                     {{dayForecast.weather.description}}
+                  </p>
+
+                  <div class="weather-forecast__day-footer">
+                     <img
+                        class="weather-forecast__day-image"
+                        [src]="'https://www.weatherbit.io/static/img/icons/' + dayForecast.weather.icon + '.png'"
+                        alt=""
+                     />
+
+                     <p class="weather-forecast__day-temperature">
+                        {{dayForecast.temp | number: "1.0-0"}}°
+                     </p>
+                  </div>
+               </div>
+            </ng-template>
+         </ng-container>
+      </swiper>
+   </div>
 </article>

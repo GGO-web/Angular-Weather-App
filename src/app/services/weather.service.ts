@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { mockedLocation, mockedWeatherData } from 'src/constants';
+import { mockedForecast, mockedLocation, mockedWeatherData } from 'src/constants';
 import { environment } from 'src/environments/environment';
 import { IForecast } from '../models/forecast.model';
 import { ILocation } from '../models/location.model';
@@ -23,7 +23,6 @@ export class WeatherService {
       return of(mockedWeatherData);
       // return this.http.get<IWeather>(environment.weatherApiUrl, {
       //    headers: new HttpHeaders()
-      //       .set(environment.XRapidAPIKey.name, environment.XRapidAPIKey.value)
       //       .set(
       //          environment.XRapidAPIHost.name,
       //          environment.XRapidAPIHost.value
@@ -42,7 +41,6 @@ export class WeatherService {
       //    ILocation[]
       // >(environment.GeolocationApiUrl, {
       //    headers: new HttpHeaders()
-      //       .set(environment.XRapidAPIKey.name, environment.XRapidAPIKey.value)
       //       .set(
       //          environment.GeolocationApiHost.name,
       //          environment.GeolocationApiHost.value
@@ -59,19 +57,18 @@ export class WeatherService {
    }
 
    getForecastWeather(location: string): Observable<IForecast> {
-      const [url, host] = [
-         'https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily',
-         {
-            name: 'X-RapidAPI-Host',
-            value: 'weatherbit-v1-mashape.p.rapidapi.com'
-         }
-      ];
+      return of(mockedForecast);
+      // const [url, host] = [
+      //    'https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily',
+      //    {
+      //       name: 'X-RapidAPI-Host',
+      //       value: 'weatherbit-v1-mashape.p.rapidapi.com'
+      //    }
+      // ];
 
-      return this.http.get<IForecast>(url, {
-         headers: new HttpHeaders()
-            .set(environment.XRapidAPIKey.name, environment.XRapidAPIKey.value)
-            .set(host.name, host.value),
-         params: new HttpParams().set('city', location).set('days', 10)
-      });
+      // return this.http.get<IForecast>(url, {
+      //    headers: new HttpHeaders().set(host.name, host.value),
+      //    params: new HttpParams().set('city', location).set('days', 10)
+      // });
    }
 }

@@ -1,43 +1,39 @@
-// @import "~@angular/material/prebuilt-themes/purple-green.css";
+@import "~@angular/material/prebuilt-themes/purple-green.css";
 @import "~@angular/material/theming";
 
-@include mat-core();
+@include mat-core;
 
 $custom-theme-primary: mat-palette($mat-light-blue);
-$custom-theme-accent: mat-palette($mat-blue, A200, A100, A400);
+$custom-theme-accent: mat-palette($mat-blue, "A200", "A100", "A400");
 $custom-theme-warn: mat-palette($mat-red);
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
 
-$custom-theme: mat-light-theme(
-   $custom-theme-primary,
-   $custom-theme-accent,
-   $custom-theme-warn
-);
-
-@function my-mat-light-theme-foreground($color) {
+@function my-mat-dark-theme-foreground($color, $text-color) {
    @return (
-      base: $color,
-      divider: $white-12-opacity,
-      dividers: $white-12-opacity,
-      disabled: rgba($color, 0.38),
-      disabled-button: rgba($color, 0.38),
-      disabled-text: rgba($color, 0.38),
-      hint-text: rgba($color, 0.38),
-      secondary-text: rgba($color, 0.54),
-      icon: rgba($color, 0.54),
-      icons: rgba($color, 0.54),
-      text: rgba($color, 0.87),
-      slider-off: rgba($color, 0.26),
-      slider-off-active: rgba($color, 0.38),
-      slider-min: rgba($color, 0.38)
+      base: $text-color,
+      divider: $color,
+      dividers: $color,
+      disabled: $color,
+      disabled-button: rgba($text-color, 0.26),
+      disabled-text: $color,
+      hint-text: $text-color,
+      secondary-text: $color,
+      icon: rgba($text-color, 0.54),
+      icons: rgba($text-color, 0.54),
+      text: $color,
+      slider-min: $text-color,
+      slider-off: rgba($text-color, 0.26),
+      slider-off-active: rgba($text-color, 0.38)
    );
 }
 
-$white-foreground: my-mat-light-theme-foreground(#8ecae6);
-$my-app-theme-custom: map-merge(
-   $custom-theme,
-   (
-      foreground: $white-foreground
-   )
-);
+$dark-foreground: my-mat-dark-theme-foreground(#8ecae6, #023047);
+$my-app-theme-custom:
+   map-merge(
+      $custom-theme,
+      (
+         foreground: $dark-foreground,
+      )
+   );
 
 @include angular-material-theme($my-app-theme-custom);

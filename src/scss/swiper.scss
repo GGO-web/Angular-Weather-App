@@ -1,5 +1,10 @@
 @import "swiper/swiper.min.css";
 
 .swiper-slide {
-   flex: 1 0 100px;
+   flex: 1 0 150px;
+}
+
+.swiper-wrapper {
+   height: unset;
+   box-shadow: border-box;
 }

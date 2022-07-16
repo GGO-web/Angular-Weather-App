@@ -1,5 +1,5 @@
 <form (ngSubmit)="searchSubmitHandler($event)" class="search-form">
-   <mat-form-field
+   <!-- <mat-form-field
       class="search-form__field"
       appearance="fill"
       [floatLabel]="getFloatLabelValue()"
@@ -23,6 +23,30 @@
          <mat-icon>close</mat-icon>
       </button>
       <mat-error *ngIf="weatherService.weatherStatus.error"
+         >Something went wrong, please try again</mat-error
+      >
+   </mat-form-field> -->
+
+   <mat-form-field
+      class="search-form__field"
+      appearance="fill"
+      [floatLabel]="getFloatLabelValue()"
+   >
+      <mat-select [formControl]="search" placeholder="Location search">
+         <mat-option>
+            <ngx-mat-select-search
+               [formControl]="searchBackend"
+               placeholderLabel="Enter your city..."
+               noEntriesFoundLabel="No matching city found"
+               [searching]="searchService.searchStatus.loading"
+            ></ngx-mat-select-search>
+         </mat-option>
+         <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+            {{city}}
+         </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="searchService.searchStatus.error"
          >Something went wrong, please try again</mat-error
       >
    </mat-form-field>

@@ -176,7 +176,7 @@
       </footer>
    </div>
 
-   <div class="weather__forecast weather-forecast">
+   <div *ngIf="forecast" class="weather__forecast weather-forecast">
       <h2 class="weather-forecast__title">
          Forecast
       </h2>
@@ -184,8 +184,8 @@
       <swiper
          [slidesPerView]="'auto'"
          [freeMode]="true"
+         [grabCursor]="true"
          [spaceBetween]="30"
-         [autoHeight]="true"
          class="weather-forecast__days list-reset"
       >
          <ng-container *ngFor="let dayForecast of forecast.data">

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { mockedForecast, mockedWeatherData } from 'src/constants';
 import { IForecast } from '../models/forecast.model';
 import { IWeather, IWeatherStatus } from '../models/weather.model';
 
@@ -17,6 +18,8 @@ export class WeatherService {
    constructor(public http: HttpClient) {}
 
    getTodayWeather(location: string): Observable<IWeather> {
+      // return of(mockedWeatherData);
+
       const [url, host] = [
          'https://community-open-weather-map.p.rapidapi.com/weather',
          {
@@ -35,6 +38,8 @@ export class WeatherService {
    }
 
    getForecastWeather(location: string): Observable<IForecast> {
+      // return of(mockedForecast);
+
       const [url, host] = [
          'https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily',
          {

@@ -9,3 +9,11 @@
 .mat-error {
    margin-top: 20px;
 }
+
+.mat-select-search-input:not(.mat-select-search-hidden)::placeholder {
+   color: var(--color-dark);
+}
+
+.mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+   transform: translateY(0) !important;
+}

@@ -1,4 +1,5 @@
 import {
+   HttpErrorResponse,
    HttpEvent,
    HttpHandler,
    HttpHeaders,
@@ -6,11 +7,11 @@ import {
    HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, retry, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class WeatherInterceptor implements HttpInterceptor {
+export class RapidAPIInterceptor implements HttpInterceptor {
    intercept(
       req: HttpRequest<any>,
       next: HttpHandler
@@ -22,6 +23,11 @@ export class WeatherInterceptor implements HttpInterceptor {
          )
       });
 
-      return next.handle(cloneReq);
+      return next.handle(cloneReq).pipe(
+         retry(1),
+         catchError((error: HttpErrorResponse) => {
+            return throwError(() => new Error(error.error.message));
+         })
+      );
    }
 }

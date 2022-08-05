@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { mockedSearchCities } from 'src/constants';
+import { environment } from 'src/environments/environment';
 import { ISearchCities, ISearchStatus } from '../models/search.model';
 
 @Injectable({
@@ -28,7 +29,9 @@ export class SearchService {
       ];
 
       return this.http.get<ISearchCities>(url, {
-         headers: new HttpHeaders().set(host.name, host.value),
+         headers: new HttpHeaders()
+            .set(host.name, host.value)
+            .set(environment.XRapidAPIKey.name, environment.XRapidAPIKey.value),
          params: new HttpParams().set('namePrefix', location)
       });
    }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { mockedForecast, mockedWeatherData } from 'src/constants';
+import { environment } from 'src/environments/environment';
 import { IForecast } from '../models/forecast.model';
 import { IWeather, IWeatherStatus } from '../models/weather.model';
 
@@ -21,17 +22,19 @@ export class WeatherService {
       // return of(mockedWeatherData);
 
       const [url, host] = [
-         'https://community-open-weather-map.p.rapidapi.com/weather',
+         'https://weatherbit-v1-mashape.p.rapidapi.com/current',
          {
             name: 'X-RapidAPI-Host',
-            value: 'community-open-weather-map.p.rapidapi.com'
+            value: 'weatherbit-v1-mashape.p.rapidapi.com'
          }
       ];
 
       return this.http.get<IWeather>(url, {
-         headers: new HttpHeaders().set(host.name, host.value),
+         headers: new HttpHeaders()
+            .set(host.name, host.value)
+            .set(environment.XRapidAPIKey.name, environment.XRapidAPIKey.value),
          params: new HttpParams()
-            .set('q', location)
+            .set('city', location)
             .set('units', 'metric')
             .set('mode', 'json')
       });

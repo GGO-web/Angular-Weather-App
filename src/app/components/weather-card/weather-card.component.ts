@@ -22,8 +22,8 @@ export class WeatherCardComponent {
       this.weatherService.weatherStatus.loading = true;
 
       this.weatherService.getTodayWeather(searchQuery).subscribe({
-         next: (data: IWeather) => {
-            this.weatherData = data;
+         next: (data: any) => {
+            this.weatherData = data?.data[0];
 
             this.weatherService.weatherStatus.loading = false;
             this.weatherService.weatherStatus.completed = true;

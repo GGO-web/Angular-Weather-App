@@ -3,35 +3,46 @@ import { ISearchCities } from './app/models/search.model';
 import { IWeather } from './app/models/weather.model';
 
 export const mockedWeatherData: IWeather = {
-   coord: { lon: 24.0232, lat: 49.8383 },
-   weather: [
-      {
-         id: 803,
-         main: 'Clouds',
-         description: 'broken clouds',
-         icon: '04d'
-      }
-   ],
-   base: 'stations',
-   main: {
-      temp: 18,
-      feels_like: 17.92,
-      temp_min: 18,
-      temp_max: 18,
-      pressure: 1014,
-      humidity: 79,
-      sea_level: 1014,
-      grnd_level: 981
+   rh: 42,
+   pod: 'd',
+   lon: 24.02324,
+   pres: 981.345,
+   timezone: 'Europe/Kiev',
+   ob_time: '2022-08-05 10:31',
+   country_code: 'UA',
+   clouds: 0,
+   ts: 1659695499,
+   solar_rad: 854.1,
+   state_code: '15',
+   city_name: 'Lviv',
+   wind_spd: 2.38876,
+   wind_cdir_full: 'east-northeast',
+   wind_cdir: 'ENE',
+   slp: 1015.99,
+   vis: 16,
+   h_angle: -11.3,
+   sunset: '18:02',
+   dni: 895.34,
+   dewpt: 14.4,
+   snow: 0,
+   uv: 7.8215,
+   precip: 0,
+   wind_dir: 75,
+   sunrise: '03:04',
+   ghi: 854.08,
+   dhi: 115.61,
+   aqi: 44,
+   lat: 49.83826,
+   weather: {
+      icon: 'c01d',
+      code: 800,
+      description: 'Clear sky'
    },
-   visibility: 10000,
-   wind: { speed: 7.46, deg: 316, gust: 14.12 },
-   clouds: { all: 80 },
-   dt: 1657734850,
-   sys: { country: 'UA', sunrise: 1657679377, sunset: 1657736952 },
-   timezone: 10800,
-   id: 702550,
-   name: 'Lviv',
-   cod: 200
+   datetime: '2022-08-05:10',
+   temp: 28.4,
+   station: 'analysis',
+   elev_angle: 56.42,
+   app_temp: 28.2
 };
 
 export const mockedForecast: IForecast = {

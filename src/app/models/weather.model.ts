@@ -1,56 +1,46 @@
 export interface IWeather {
-   coord: Coord;
-   weather: Weather[];
-   base: string;
-   main: Main;
-   visibility: number;
-   wind: Wind;
-   clouds: Clouds;
-   dt: number;
-   sys: Sys;
-   timezone: number;
-   id: number;
-   name: string;
-   cod: number;
-}
-
-export interface Coord {
+   rh: number;
+   pod: string;
    lon: number;
+   pres: number;
+   timezone: string;
+   ob_time: string;
+   country_code: string;
+   clouds: number;
+   ts: number;
+   solar_rad: number;
+   state_code: string;
+   city_name: string;
+   wind_spd: number;
+   wind_cdir_full: string;
+   wind_cdir: string;
+   slp: number;
+   vis: number;
+   h_angle: number;
+   sunset: string;
+   dni: number;
+   dewpt: number;
+   snow: number;
+   uv: number;
+   precip: number;
+   wind_dir: number;
+   sunrise: string;
+   ghi: number;
+   dhi: number;
+   aqi: number;
    lat: number;
+   weather: Weather;
+   datetime: string;
+   temp: number;
+   station: string;
+   elev_angle: number;
+   app_temp: number;
 }
 
 export interface Weather {
-   id: number;
-   main: string;
-   description: string;
    icon: string;
-}
-
-export interface Main {
-   temp: number;
-   feels_like: number;
-   temp_min: number;
-   temp_max: number;
-   pressure: number;
-   humidity: number;
-   sea_level: number;
-   grnd_level: number;
-}
-
-export interface Wind {
-   speed: number;
-   deg: number;
-   gust: number;
-}
-
-export interface Clouds {
-   all: number;
-}
-
-export interface Sys {
-   country: string;
-   sunrise: number;
-   sunset: number;
+   code: number;
+   description: string;
 }
 
 export interface IWeatherStatus {

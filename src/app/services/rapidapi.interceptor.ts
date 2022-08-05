@@ -23,11 +23,6 @@ export class RapidAPIInterceptor implements HttpInterceptor {
          )
       });
 
-      return next.handle(cloneReq).pipe(
-         retry(1),
-         catchError((error: HttpErrorResponse) => {
-            return throwError(() => new Error(error.error.message));
-         })
-      );
+      return next.handle(cloneReq);
    }
 }

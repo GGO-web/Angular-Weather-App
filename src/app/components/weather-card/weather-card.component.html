@@ -53,28 +53,28 @@
    <div
       class="weather-card"
       [style]="{
-   'backgroundImage': 'linear-gradient(-60deg, rgba(0,0,0,0.3), rgba(255,255,255,0.3)), url(' + env.base + 'assets/conditions/' + weatherData.weather[0].icon + '.jpg)'}"
+   'backgroundImage': 'linear-gradient(-60deg, rgba(0,0,0,0.3), rgba(255,255,255,0.3)), url(' + env.base + 'assets/conditions/' + weatherData.weather.icon.slice(1) + '.jpg)'}"
    >
       <header class="weather-card__header">
          <img
             class="weather-card__header-icon"
-            src="http://openweathermap.org/img/wn/{{weatherData.weather[0].icon}}@2x.png"
-            [alt]="weatherData.weather[0].main"
+            src="https://www.weatherbit.io/static/img/icons/{{weatherData.weather.icon}}.png"
+            [alt]="weatherData.weather.code"
          />
 
          <h2 class="weather-card__title m-0">
-            {{weatherData.name}}
+            {{weatherData.city_name}}
          </h2>
 
          <span class="weather-card__header-status">
-            {{weatherData.weather[0].main}}
+            {{weatherData.weather.description}}
          </span>
       </header>
 
       <div class="weather-card__body">
          <div class="weather-card__body-item">
             <p class="weather-card__temperature">
-               {{weatherData.main.temp | number: '1.0-0'}}
+               {{weatherData.temp | number: '1.0-0'}}
             </p>
 
             <div class="weather-card__temperature-right">
@@ -82,7 +82,7 @@
                   °C
                </span>
                <p class="weather-card__feelslike">
-                  Feels like {{weatherData.main.feels_like}}°
+                  Feels like {{weatherData.app_temp}}°
                </p>
             </div>
          </div>
@@ -96,7 +96,7 @@
                />
                <span class="weather-card__duration-caption">sunrise</span>
                <time class="weather-card__duration-time">
-                  {{weatherData.sys.sunrise * 1000 | date: "hh:mm"}}
+                  {{weatherData.sunrise}}
                </time>
             </div>
 
@@ -108,7 +108,7 @@
                />
                <span class="weather-card__duration-caption">sunset</span>
                <time class="weather-card__duration-time">
-                  {{weatherData.sys.sunset * 1000 | date: "HH:mm"}}
+                  {{weatherData.sunset}}
                </time>
             </div>
          </div>
@@ -119,24 +119,12 @@
             <div class="weather-card__details-item">
                <img
                   class="weather-card__details-icon"
-                  [src]="env.base + 'assets/temperature.svg'"
-                  alt=""
-               />
-               <p class="weather-card__details-text">High/Low</p>
-               <p class="weather-card__details-value">
-                  {{weatherData.main.temp_max | number: '1.0-0'}}° /
-                  {{weatherData.main.temp_min | number: '1.0-0'}}°
-               </p>
-            </div>
-            <div class="weather-card__details-item">
-               <img
-                  class="weather-card__details-icon"
                   [src]="env.base + 'assets/wind.svg'"
                   alt=""
                />
                <p class="weather-card__details-text">Wind</p>
                <p class="weather-card__details-value">
-                  {{weatherData.wind.speed}} m/s
+                  {{weatherData.wind_spd}} m/s
                </p>
             </div>
             <div class="weather-card__details-item">
@@ -147,7 +135,7 @@
                />
                <p class="weather-card__details-text">Humidity</p>
                <p class="weather-card__details-value">
-                  {{weatherData.main.humidity}} %
+                  {{weatherData.rh}} %
                </p>
             </div>
             <div class="weather-card__details-item">
@@ -158,7 +146,7 @@
                />
                <p class="weather-card__details-text">Visibility</p>
                <p class="weather-card__details-value">
-                  {{weatherData.visibility / 1000 | number: '1.0-2'}} km
+                  {{weatherData.vis | number: '1.0-2'}} km
                </p>
             </div>
             <div class="weather-card__details-item">
@@ -169,7 +157,7 @@
                />
                <p class="weather-card__details-text">Pressure</p>
                <p class="weather-card__details-value">
-                  {{weatherData.main.pressure}} hPa
+                  {{weatherData.pres}} mb
                </p>
             </div>
          </div>

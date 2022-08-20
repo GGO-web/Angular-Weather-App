@@ -2,7 +2,10 @@
 
 <div *ngIf="weatherService.weatherStatus.loading" class="skeleton">
    <div class="skeleton__item" [style]="{'textAlign': 'center'}">
-      <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+         count="1"
+         appearance="circle"
+      ></ngx-skeleton-loader>
       <ngx-skeleton-loader
          count="1"
          appearance="line"
@@ -24,14 +27,20 @@
    </div>
 
    <div class="skeleton__item" [style]="{'textAlign': 'center'}">
-      <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+         count="1"
+         appearance="circle"
+      ></ngx-skeleton-loader>
       <ngx-skeleton-loader
          count="1"
          appearance="line"
          [theme]="{'display': 'inline-block', 'width': '50px'}"
       ></ngx-skeleton-loader>
 
-      <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+         count="1"
+         appearance="circle"
+      ></ngx-skeleton-loader>
       <ngx-skeleton-loader
          count="1"
          appearance="line"
@@ -49,7 +58,10 @@
    </div>
 </div>
 
-<article *ngIf="weatherService.weatherStatus.completed" class="weather">
+<article
+   *ngIf="weatherService.weatherStatus.completed"
+   class="weather"
+>
    <div
       class="weather-card"
       [style]="{
@@ -94,7 +106,9 @@
                   [src]="env.base + 'assets/sunrise.svg'"
                   alt=""
                />
-               <span class="weather-card__duration-caption">sunrise</span>
+               <span class="weather-card__duration-caption"
+                  >sunrise</span
+               >
                <time class="weather-card__duration-time">
                   {{weatherData.sunrise}}
                </time>
@@ -106,7 +120,9 @@
                   [src]="env.base + 'assets/sunset.svg'"
                   alt=""
                />
-               <span class="weather-card__duration-caption">sunset</span>
+               <span class="weather-card__duration-caption"
+                  >sunset</span
+               >
                <time class="weather-card__duration-time">
                   {{weatherData.sunset}}
                </time>
@@ -184,10 +200,12 @@
                      [dateTime]="dayForecast.valid_date"
                   >
                      <span class="weather-forecast__time-weekday"
-                        >{{dayForecast.valid_date | date: "ccc"}}</span
+                        >{{dayForecast.valid_date | date:
+                        "ccc"}}</span
                      >
                      <span class="weather-forecast__time-monthday"
-                        >{{dayForecast.valid_date | date: "dd MMM"}}</span
+                        >{{dayForecast.valid_date | date: "dd
+                        MMM"}}</span
                      >
                   </time>
 

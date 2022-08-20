@@ -25,6 +25,24 @@ export class WeatherCardComponent {
          next: (data: any) => {
             this.weatherData = data?.data[0];
 
+            const offset = -new Date().getTimezoneOffset();
+
+            console.log(offset);
+
+            this.weatherData.sunrise = this.weatherData.sunrise
+               .split(':')
+               .map((item, index) =>
+                  index === 0 ? +item + Math.floor(offset / 60) : item
+               )
+               .join(':');
+
+            this.weatherData.sunset = this.weatherData.sunset
+               .split(':')
+               .map((item, index) =>
+                  index === 0 ? +item + Math.floor(offset / 60) : item
+               )
+               .join(':');
+
             this.weatherService.weatherStatus.loading = false;
             this.weatherService.weatherStatus.completed = true;
 

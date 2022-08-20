@@ -31,7 +31,7 @@ describe('WeatherCardComponent', () => {
 
       component.makeSearchRequest('Lviv');
 
-      expect(component.weatherData.name).toBe('Lviv');
+      expect(component.weatherData.city_name).toBe('Lviv');
    });
 
    it('should display error when request is failed', () => {
